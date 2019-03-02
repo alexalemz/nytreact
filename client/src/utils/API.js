@@ -1,6 +1,6 @@
 import axios from "axios";
 const BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-const APIKEY = "b9f91d369ff59547cd47b931d8cbc56b:0:74623931";
+const APIKEY = "Cs1u1UjGZAZ60LT67Suqqserfmob6CuM";
 
 export default {
   // Search the NYT website.
@@ -9,8 +9,8 @@ export default {
       params: {
         q:          query.q,
         fq:         `document_type: ("article")`,  // We only want articles, not topics, etc.
-        begin_date: query.begin_date || null,      // The dates are optional
-        end_date:   query.end_date || null,
+        begin_date: query.begin_date || undefined,      // The dates are optional
+        end_date:   query.end_date || undefined,
         "api-key":  APIKEY
       }
     });

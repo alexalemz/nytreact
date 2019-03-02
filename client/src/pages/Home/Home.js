@@ -23,8 +23,8 @@ class Home extends Component {
     // Search for articles in the NYT API
     API.search({
       q:          this.state.topic,
-      begin_date: this.state.startYear ? this.state.startYear + "0101" : null,
-      end_date:   this.state.endYear   ? this.state.startYear + "1231" : null
+      begin_date: this.state.startYear ? this.state.startYear + "0101" : undefined,
+      end_date:   this.state.endYear   ? this.state.endYear + "1231" : undefined,
     })
     .then(res => {
       const topFiveResults = res.data.response.docs.slice(0, 5);
@@ -54,13 +54,17 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="text-center">
-        <SearchForm 
-          handleInputChange={this.handleInputChange} 
-          handleFormSubmit={this.handleFormSubmit} 
-          state={this.state}
-        />
-        <Results results={this.state.results} saveArticle={this.saveArticle} />
+      <div className="text-center row">
+        <div className="col-lg-12">
+          <SearchForm 
+            handleInputChange={this.handleInputChange} 
+            handleFormSubmit={this.handleFormSubmit} 
+            state={this.state}
+          />
+        </div>
+        <div className="col-lg-12">
+          <Results results={this.state.results} saveArticle={this.saveArticle} />
+        </div>
       </div>
     )
   }

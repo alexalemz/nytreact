@@ -3,7 +3,7 @@ import React from "react";
 const Nav = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
     <a className="navbar-brand" href="/">
-      NYT React App
+      New York Times Article Search in React
     </a>
     <div className="ml-4">
       <ul className="navbar-nav">
