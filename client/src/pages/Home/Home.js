@@ -8,7 +8,8 @@ class Home extends Component {
     topic: "",
     startYear: "",
     endYear: "",
-    results: []
+    results: [],
+    loading: false,
   }
 
   handleInputChange = event => {
@@ -20,23 +21,29 @@ class Home extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    // Search for articles in the NYT API
-    API.search({
-      q:          this.state.topic,
-      begin_date: this.state.startYear ? this.state.startYear + "0101" : undefined,
-      end_date:   this.state.endYear   ? this.state.endYear + "1231" : undefined,
-    })
-    .then(res => {
-      const topFiveResults = res.data.response.docs.slice(0, 5);
-      this.setState({
-        results: topFiveResults
+    // First, set loading to true, then to false once results come back.
+    this.setState({ loading: true }, () => {
+      // Search for articles in the NYT API
+      API.search({
+        q:          this.state.topic,
+        begin_date: this.state.startYear ? this.state.startYear + "0101" : undefined,
+        end_date:   this.state.endYear   ? this.state.endYear + "1231" : undefined,
       })
+      .then(res => {
+        const docs = res.data.response.docs;
+        const topFiveResults = docs.length ? docs.slice(0, 5) : [];
+        this.setState({
+          results: topFiveResults,
+          loading: false,
+        })
+      })
+      .catch(err => console.log(err));
     })
-    .catch(err => console.log(err));
+
   }
 
   // Accept an article and save it to MongoDB
-  saveArticle = (article) => {
+  saveArticle = async (article) => {
     console.log("In Home.SaveArticle");
     // The properties of an article in MongoDB are (title, date, url)
     const newArticle = {
@@ -45,11 +52,16 @@ class Home extends Component {
       url:    article.web_url
     }
 
-    API.saveArticle(newArticle)
+    let saveSuccess = false;
+
+    await API.saveArticle(newArticle)
     .then(res => {
-      console.log(res)
+      console.log(res);
+      saveSuccess = true;
     })
     .catch(err => console.log(err));
+
+    return saveSuccess;
   }
 
   render() {
@@ -63,7 +75,7 @@ class Home extends Component {
           />
         </div>
         <div className="col-lg-12">
-          <Results results={this.state.results} saveArticle={this.saveArticle} />
+          <Results results={this.state.results} saveArticle={this.saveArticle} loading={this.state.loading} />
         </div>
       </div>
     )

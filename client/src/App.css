@@ -46,3 +46,11 @@
 .articleItem button {
   /* margin: 20px 0; */
 }
+
+
+/* Reduce the Navbar Brand font-size on mobile. */
+@media screen and (max-width: 400px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+}

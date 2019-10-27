@@ -1,23 +1,28 @@
 import React from "react";
 
 const Nav = () => (
-  <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a className="navbar-brand" href="/">
-      New York Times Article Search in React
-    </a>
-    <div className="ml-4">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className={ window.location.pathname === "/" ? "nav-link active" : "nav-link" } href="/">
-            Home
-          </a>
-        </li>
-        <li className="nav-item">
-          <a className={ window.location.pathname === "/saved" ? "nav-link active" : "nav-link" } href="/saved">
-            Saved Articles
-          </a>
-        </li>
-      </ul>
+  <nav className="navbar navbar-expand-md navbar-dark bg-primary">
+    <div className="container">
+      <a className="navbar-brand" href="/">
+        New York Times Article Search
+      </a>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <a className={ window.location.pathname === "/" ? "nav-link active" : "nav-link" } href="/">
+              Home
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className={ window.location.pathname === "/saved" ? "nav-link active" : "nav-link" } href="/saved">
+              Saved Articles
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 );

@@ -16,6 +16,7 @@ class Saved extends Component {
     API.getArticles()
     .then(res => {
       const dbArticles = res.data;
+      console.log("dbArticles", dbArticles)
       this.setState({
         saved: dbArticles
       })
@@ -40,15 +41,15 @@ class Saved extends Component {
         <div className="card-body">
           {this.state.saved.map(article => {
             return (
-              <div className="articleItem">
+              <div key={article._id} className="articleItem">
                 <div key={article._id} className="row text-left">
-                  <div className="col-10">
+                  <div className="col-md-10">
                     <h5><a href={article.url}>{article.title}</a></h5>
                     <p>Published {moment(article.date).format("MMM Do, YYYY")}</p>
                   </div>
-                  <div className="col-2">
+                  <div className="col-md-2 text-right">
                     <button 
-                      className="btn btn-danger" 
+                      className="btn btn-danger my-1"
                       onClick={ () => this.deleteArticle(article._id) }
                     >
                       Remove
