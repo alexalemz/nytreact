@@ -23,7 +23,7 @@ class SearchForm extends Component {
             </div>
             {/* <FormBtn>{this.props.state.loading ? loader : "Search"}</FormBtn> */}
             <div className="row">
-              <div className="col-4 col-md-3 col-lg-2 mx-auto">
+              <div className="col-4 col-md-3 col-lg-2 ml-auto mx-sm-auto">
                 <button className="btn btn-block btn-success">{/* this.props.state.loading ? loader : */ "Search"}</button>
               </div>
             </div>
