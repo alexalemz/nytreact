@@ -12,7 +12,7 @@ class SearchForm extends Component {
         <h3 className="card-header">Search</h3>
         <div className="card-body">
           <form onChange={this.props.handleInputChange} onSubmit={this.props.handleFormSubmit}>
-            <Input name="topic" id="topic" label="Topic" value={this.props.state.topic} autoFocus />
+            <Input name="topic" id="topic" label="Topic" value={this.props.state.topic} /* autoFocus */ />
             <div className="row">
               <div className="col-6">
                 <Input name="startYear" id="startYear" label="Start Year (optional)" value={this.props.state.startYear} />
