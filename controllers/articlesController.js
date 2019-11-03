@@ -1,9 +1,29 @@
 const db = require("../models");
+const axios = require("axios");
+// NYT API info
+const BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+const APIKEY = process.env.APIKEY;
 
 // Defining methods for the articlesController
 module.exports = {
+  // Takes the query paramaters and searches the NYT API
+  search: function(req, res) {
+    const query = req.query;
+    axios.get(BASEURL, {
+      params: {
+        q:          query.q,
+        fq:         `document_type: ("article")`,  // We only want articles, not topics, etc.
+        begin_date: query.begin_date || undefined,      // The dates are optional
+        end_date:   query.end_date || undefined,
+        "api-key":  APIKEY
+      }
+    }).then(resp => {
+      res.json(resp.data);
+    }).catch(err =>
+      res.json(err));
+  },
   findAll: function(req, res) {
-    //// console.log("In articlesController.findAll")
+    console.log("In articlesController.findAll")
     db.Article
       .find(req.query)
       .sort({ date: -1 })
