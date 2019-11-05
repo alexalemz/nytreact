@@ -47,6 +47,11 @@
   /* margin: 20px 0; */
 }
 
+/* Center the inputs on search form */
+.search-form input {
+  text-align: center;
+}
+
 
 /* Reduce the Navbar Brand font-size on mobile. */
 @media screen and (max-width: 768px) {

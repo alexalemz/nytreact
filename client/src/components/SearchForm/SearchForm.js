@@ -11,7 +11,7 @@ class SearchForm extends Component {
       <div className="card">
         <h3 className="card-header">Search</h3>
         <div className="card-body">
-          <form onChange={this.props.handleInputChange} onSubmit={this.props.handleFormSubmit}>
+          <form onChange={this.props.handleInputChange} onSubmit={this.props.handleFormSubmit} className="search-form">
             <Input name="topic" id="topic" label="Topic" value={this.props.state.topic} /* autoFocus */ />
             <div className="row">
               <div className="col-6">
