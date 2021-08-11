@@ -42,16 +42,20 @@ class Results extends Component {
   render() {
     const loader = <Loader type="Oval" color="gray" width={50} height={50} />
 
+    console.log('current results', this.props.results)
+
     return (
       <div className="card">
         <h3 className="card-header">Results</h3>
-        <div className="card-body">
-          {this.props.loading ? loader : this.props.results.map(result => {
-            return (
-              <ArticleItem key={result._id} article={result} saveArticle={this.props.saveArticle} />
-            )
-          })}
-        </div>
+        <div className="card-body">{
+          this.props.loading ? loader : 
+          this.props.noResults ? <p><strong>No results found</strong></p> :
+          this.props.results.length === 0 ? 
+            <p style={{color: '#606060'}}>You haven't searched for anything yet.</p> : 
+              this.props.results.map(result => { return (
+                <ArticleItem key={result._id} article={result} saveArticle={this.props.saveArticle} />
+              )})
+        }</div>
       </div>
     )
   }

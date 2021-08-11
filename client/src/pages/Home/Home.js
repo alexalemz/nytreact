@@ -10,6 +10,7 @@ class Home extends Component {
     endYear: "",
     results: [],
     loading: false,
+    noResults: false,
   }
 
   handleInputChange = event => {
@@ -32,9 +33,11 @@ class Home extends Component {
       .then(res => {
         const docs = res.data.response.docs;
         const topFiveResults = docs.length ? docs.slice(0, 5) : [];
+        const noResults = topFiveResults.length === 0 ? true : false;
         this.setState({
           results: topFiveResults,
           loading: false,
+          noResults,
         })
       })
       .catch(err => console.log(err));
@@ -75,7 +78,7 @@ class Home extends Component {
           />
         </div>
         <div className="col-lg-12">
-          <Results results={this.state.results} saveArticle={this.saveArticle} loading={this.state.loading} />
+          <Results results={this.state.results} saveArticle={this.saveArticle} loading={this.state.loading} noResults={this.state.noResults} />
         </div>
       </div>
     )

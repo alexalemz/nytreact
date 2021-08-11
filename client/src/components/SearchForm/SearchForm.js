@@ -15,10 +15,10 @@ class SearchForm extends Component {
             <Input name="topic" id="topic" label="Topic" value={this.props.state.topic} /* autoFocus */ />
             <div className="row">
               <div className="col-6">
-                <Input name="startYear" id="startYear" label="Start Year (optional)" value={this.props.state.startYear} />
+                <Input name="startYear" id="startYear" label="Start Year <span class='label-optional'>(optional)</span>" value={this.props.state.startYear} />
               </div>
               <div className="col-6">
-                <Input name="endYear" id="endYear" label="End Year (optional)" value={this.props.state.endYear} />    
+                <Input name="endYear" id="endYear" label="End Year <span class='label-optional'>(optional)</span>" value={this.props.state.endYear} />    
               </div>
             </div>
             {/* <FormBtn>{this.props.state.loading ? loader : "Search"}</FormBtn> */}
